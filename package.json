@@ -1,0 +1,19 @@
+{
+    "name": "ContextEngineDistributedExpressions",
+    "version": "0.0.0",
+    "description": "distributed context expressions for context engine",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "grunt-mocha-test": "^0.11.0",
+        "grunt": "^0.4.5",
+        "grunt-contrib-jshint": "^0.10.0",
+        "grunt-jscs-checker": "^0.6.1",
+        "jit-grunt": "^0.7.0",
+        "chai": "^1.9.1"
+    }
+}
