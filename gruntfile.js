@@ -13,14 +13,6 @@ module.exports = function (grunt) {
                 src: ['test/**/*.js']
             }
         },
-        jshint: {
-            options: {
-                jshintrc: true
-            },
-            all: {
-                src: ['**/*.js', '!node_modules/**/*']
-            }
-        },
         jscs: {
             server: {
                 options: {
@@ -32,6 +24,6 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('test', ['mochaTest']);
-    grunt.registerTask('default', ['jshint', 'jscs', 'test']);
+    grunt.registerTask('default', ['test', 'jscs']);
 
 };
