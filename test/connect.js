@@ -1,11 +1,11 @@
 require('chai').should();
-var promisedConnection = require('../lib/promisedConnection');
+var rabbitPie = require('../lib');
 
 describe('connecting', function () {
     it('should connect, setup an exchange and bound queue which can recieve messages published on that exchange', function (done) {
         var testingExchange;
 
-        promisedConnection.connect().then(function (connection) {
+        rabbitPie.connect().then(function (connection) {
             return connection.declareExchange('testing');
         }).then(function (exchange) {
             testingExchange = exchange;
@@ -34,7 +34,7 @@ describe('cleanup', function () {
         var testingExchange;
         var passTestTimeout;
 
-        promisedConnection.connect().then(function (connection) {
+        rabbitPie.connect().then(function (connection) {
             return connection.declareExchange('testing2');
         }).then(function (exchange) {
             testingExchange = exchange;

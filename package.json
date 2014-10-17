@@ -1,10 +1,13 @@
 {
-    "name": "ContextEngineDistributedExpressions",
+    "name": "rabbit-pie",
     "version": "0.0.0",
-    "description": "distributed context expressions for context engine",
-    "main": "index.js",
+    "description": "library for making amqp as easy as pie",
+    "main": "lib/index.js",
+    "author": {
+        "name": "Julian Haeger"
+    },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "grunt"
     },
     "author": "",
     "license": "ISC",
