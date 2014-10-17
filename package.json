@@ -9,6 +9,10 @@
     "scripts": {
         "test": "grunt"
     },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/foo42/rabbitpie.git"
+    },
     "author": "",
     "license": "ISC",
     "dependencies": {
