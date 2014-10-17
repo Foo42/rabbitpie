@@ -2,6 +2,7 @@ var EventEmitter = require('events').EventEmitter;
 var promisedConnection = require('../lib/promisedConnection');
 var distexProvider = require('../lib/distexProvider');
 require('chai').should();
+var Promise = require('promise');
 
 describe('distex provider', function () {
     var distextExchange;
@@ -59,26 +60,27 @@ describe('distex provider', function () {
         });
     });
 
-    it.skip('should should publish event.handler.available when supplied callback returns a truthy promise', function (done) {
+    it('should should publish event.handler.available when supplied callback returns a truthy promise', function (done) {
         distexProvider.create(connection, function canHandle(request) {
             return Promise.resolve(true);
         }).then(function onDistextProviderInitialised(distexProvider) {
             cleanupEmitter.once('cleanup', distexProvider.dispose.bind(distexProvider));
 
             console.log('distex provider initialised, publishing message')
-            clientQueue.bind('event.handler.available');
+            clientQueue.bind('event.handler.available.#').then(function () {
+                clientQueue.once('message', function confirmReceivedCorrectMessage(message) {
+                    message = JSON.parse(message);
+                    message.requestId.should.equal(12345);
+                    message.token.should.not.equal(undefined);
 
-            clientQueue.once('message', function confirmReceivedCorrectMessage(message) {
-                message.token.should.not.equal(undefined);
+                    done();
+                });
 
-                done();
+                distextExchange.publish('event.handler.required', {
+                    expression: 'cron:00 26 12 * * *',
+                    id: 12345
+                });
             });
-
-            distextExchange.publish('event.handler.required', {
-                expression: 'cron:00 26 12 * * *',
-                id: 12345
-            });
-
         }).catch(function (error) {
             console.log('badness', error);
             done(error);
