@@ -4,7 +4,7 @@ library for making amqp as easy as pie in nodejs
 
 ##Example
 
-`
+```
 rabbitPie.connect().then(function (connection) {
     return connection.declareExchange('testing');
 }).then(function (exchange) {
@@ -16,4 +16,4 @@ rabbitPie.connect().then(function (connection) {
         console.log(arguments);
     });
 });
-`
+```
